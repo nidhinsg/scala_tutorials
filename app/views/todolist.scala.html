@@ -1,0 +1,50 @@
+@(tasks: List[Todo], todoForm: Form[String])(implicit requestHeader: MessagesRequestHeader)
+
+@import helper._
+@import views.html.helper._
+
+@main("Todo list") {
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>To Do App<span>(@tasks.size task(s))</span></h1>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <b>To Do Task</b>
+                    </td>
+                    <td>
+                        <b>Action</b>
+                    </td>
+                </tr>
+                @tasks.map { task =>
+                <tr>
+                    <td>@task.label</td>
+                    <td>
+                        @form(routes.HomeController.delete(task.id)) {
+                        <input type="submit" value="Delete">
+                        }
+                    </td>
+                </tr>
+                }
+            </table>
+
+            @form(routes.HomeController.createlist) {
+                @CSRF.formField
+                <label>Add a new Task: </label>
+                <input type="text" name="label">
+                <input type="submit" class="btn primary" value="Create">
+            }
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+}
