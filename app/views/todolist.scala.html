@@ -23,7 +23,8 @@
                     <td>@task.label</td>
                     <td>
                         @form(routes.HomeController.delete(task.id)) {
-                        <input type="submit" value="Delete">
+                            @CSRF.formField
+                            <input type="submit" value="Delete" class="btn danger">
                         }
                     </td>
                 </tr>
@@ -36,15 +37,6 @@
                 <input type="text" name="label">
                 <input type="submit" class="btn primary" value="Create">
             }
-
         </div>
-
-
-
-
-
-
-
-
     </div>
 }

@@ -39,6 +39,7 @@ class HomeController @Inject()(todoService: TodoList, cc: MessagesControllerComp
   }
 
   def delete(id: Long) = Action {
+    todoService.delete(id)
     Redirect(routes.HomeController.todolist)
   }
 }
